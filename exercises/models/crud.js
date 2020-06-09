@@ -1,22 +1,28 @@
 const User = require('./user')
+const connect = require('../connect')
 
-const getUserById = (id) => {
- 
+const url = 'mongodb://localhost:27017/myDatabase'
+
+const getUserById = async (id) => {
+  const foundUser = await User.findById(id).exec()
+  return foundUser
 }
 
-const getAllUsers = () => {
-  
+const getAllUsers = async () => {
+  const allUsers = await User.find({}).exec()
+  return allUsers
+}
+const createUser = async (userDetails) => {
+  const user = await User.create(userDetails)
+  return user
+}
+const removeUserById = async (id) => {
+  const removedUser = await User.findByIdAndDelete(id).exec()
 }
 
-const createUser = (userDetails) => {
-  
-}
-const removeUserById = (id) => {
-  
-}
-
-const updateUserById = (id, update) => {
-
+const updateUserById = async (id, update) => {
+  const updatedUser = await User.findByIdAndUpdate(id, update, { new: true })
+  return updatedUser
 }
 
 module.exports = {
@@ -24,5 +30,5 @@ module.exports = {
   getAllUsers,
   createUser,
   removeUserById,
-  updateUserById
+  updateUserById,
 }

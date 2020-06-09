@@ -7,11 +7,11 @@ global.newId = () => {
   return mongoose.Types.ObjectId()
 }
 
-beforeEach(async done => {
+beforeEach(async (done) => {
   const db = cuid()
   function clearDB() {
     for (var i in mongoose.connection.collections) {
-      mongoose.connection.collections[i].remove(function() {})
+      mongoose.connection.collections[i].remove(function () {})
     }
     return done()
   }
@@ -26,10 +26,10 @@ beforeEach(async done => {
     clearDB()
   }
 })
-afterEach(done => {
+afterEach((done) => {
   mongoose.disconnect()
   return done()
 })
-afterAll(done => {
+afterAll((done) => {
   return done()
 })
