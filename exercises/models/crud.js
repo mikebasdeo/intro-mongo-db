@@ -21,7 +21,9 @@ const removeUserById = async (id) => {
 }
 
 const updateUserById = async (id, update) => {
-  const updatedUser = await User.findByIdAndUpdate(id, update, { new: true })
+  const updatedUser = await User.findByIdAndUpdate(id, update, {
+    new: true,
+  }).exec()
   return updatedUser
 }
 
