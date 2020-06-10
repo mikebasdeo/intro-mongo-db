@@ -68,10 +68,11 @@ connect()
     const schools = await School.create([school1, school2])
 
     // const match = await School.findOne({
-    //   students: { $gt: 4 },
+    //   students: { $gt: 4, $lt: 3},
     //   isGreat: false,
     // })
 
+    // sneaky list search
     // const match = await School.find({
     //   staff: 'b',
     // })
