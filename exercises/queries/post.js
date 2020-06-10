@@ -24,8 +24,14 @@ const postSchema = new mongoose.Schema(
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'author',
-      required: true
+      required: true,
     },
+    similarPosts: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'post',
+      },
+    ],
   },
   { timestamps: true }
 )

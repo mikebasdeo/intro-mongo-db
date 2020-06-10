@@ -5,15 +5,39 @@ const postByTitle = async (title) => {
   return post
 }
 
-const postsForAuthor = (authorId) => {}
+const postsForAuthor = async (authorId) => {
+  const allPostsFromAuthor = await Post.find({ author: authorId }).exec()
+  return allPostsFromAuthor
+}
 
-const fullPostById = (id) => {}
+const postByContentLength = async (maxContentLength, minContentLength) => {
+  const posts = await Post.find({
+    contentLength: { $gt: minContentLength, $lt: maxContentLength },
+  }).exec()
+  return posts
+}
 
-const allPostsSlim = (fieldsToSelect) => {}
+const fullPostById = async (_id) => {
+  const post = await Post.findOne({ _id }).exec()
+  return post
+}
 
-const postByContentLength = (maxContentLength, minContentLength) => {}
+const allPostsSlim = async (fieldsToSelect) => {
+  const answer = await Post.find({}).select(fieldsToSelect).exec()
+  return answer
+}
 
-const addSimilarPosts = (postId, similarPosts) => {}
+const addSimilarPosts = async (postId, x) => {
+  const updatedSimilarPosts = await Post.findByIdAndUpdate(
+    postId,
+    {
+      $push: { similarPosts: { $each: x } },
+    },
+    { new: true }
+  ).exec()
+
+  return updatedSimilarPosts
+}
 
 module.exports = {
   postByTitle,
