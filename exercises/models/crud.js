@@ -1,7 +1,6 @@
 const User = require('./user')
-const connect = require('../connect')
-
-const url = 'mongodb://localhost:27017/myDatabase'
+// const connect = require('../connect')
+// const url = 'mongodb://localhost:27017/myDatabase'
 
 const getUserById = async (id) => {
   const foundUser = await User.findById(id).exec()

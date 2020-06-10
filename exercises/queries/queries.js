@@ -1,28 +1,19 @@
 const Post = require('./post')
 
-const postByTitle = (title) => {
-
+const postByTitle = async (title) => {
+  const post = await Post.findOne({ title }).exec()
+  return post
 }
 
-const postsForAuthor = (authorId) => {
+const postsForAuthor = (authorId) => {}
 
-}
+const fullPostById = (id) => {}
 
-const fullPostById = (id) => {
-  
-}
+const allPostsSlim = (fieldsToSelect) => {}
 
-const allPostsSlim = (fieldsToSelect) => {
-  
-}
+const postByContentLength = (maxContentLength, minContentLength) => {}
 
-const postByContentLength = (maxContentLength, minContentLength) => {
-  
-}
-
-const addSimilarPosts = (postId, similarPosts) => {
-  
-}
+const addSimilarPosts = (postId, similarPosts) => {}
 
 module.exports = {
   postByTitle,
@@ -30,5 +21,5 @@ module.exports = {
   fullPostById,
   allPostsSlim,
   postByContentLength,
-  addSimilarPosts
+  addSimilarPosts,
 }
