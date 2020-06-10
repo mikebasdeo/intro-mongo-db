@@ -18,7 +18,7 @@ const postByContentLength = async (maxContentLength, minContentLength) => {
 }
 
 const fullPostById = async (_id) => {
-  const post = await Post.findOne({ _id }).exec()
+  const post = await Post.findOne({ _id }).populate('author').exec()
   return post
 }
 
@@ -27,11 +27,12 @@ const allPostsSlim = async (fieldsToSelect) => {
   return answer
 }
 
-const addSimilarPosts = async (postId, x) => {
+const addSimilarPosts = async (postId, similarPosts) => {
   const updatedSimilarPosts = await Post.findByIdAndUpdate(
     postId,
     {
-      $push: { similarPosts: { $each: x } },
+      // ⏰
+      $push: { similarPosts: { $each: similarPosts } },
     },
     { new: true }
   ).exec()
